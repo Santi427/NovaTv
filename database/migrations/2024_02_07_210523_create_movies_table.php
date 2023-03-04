@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('quality', ['cam', 'FullHd', '720p', '1080p', '4k']);
             $table->String('image');
             $table->date('release_year');
-            $table->integer('reproduction_number');
+            $table->integer('reproduction_number')->default(0);
             $table->String('language');
             $table->String('video_link');
             $table->String('download_link');
