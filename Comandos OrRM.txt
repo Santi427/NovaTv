@@ -1,0 +1,54 @@
+Comandos ORM
+
+CREATE
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+use App\Models\Role;
+$role = new Role;
+$role->name = 'Admin';
+$role->description = 'Administraodr del sistema';
+$role->save();
+
+
+use App\Models\User;
+$user = new User;
+$user->fullname ='Santiago Osorio Giraldo';
+$user->email = 'santiagoo1042@gmail.com';
+$user->phone = '3206602970';
+$user->photo = 'image/no-photo.png';
+$user->password = bcrypt('12345678');
+$user->role_id = 1;
+$user->save();
+
+
+READ
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+use App\Models\User;
+$users = User::all(); //Obtiene todos los registros 
+$user = User::find(1);  //obtiene un registro en especifico
+$user = User::find([1,2,3]);  //obtiene varios registros
+$user = User::findOrFail(200); //Obtiene un registro y si no obtiene aparce la exepcion
+$count = User::count();  //cuenta el numero de registros en la base de datos 
+$max = User::all()->max('id'); 
+$min = User::all()->min('id');
+$users = User::all()->take(5);
+// Where
+$admins = Users::where('role_id',1)->get();
+
+
+UPDATE
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+$user = User::find(1);
+$user->email = 'santiagoo427@hotmail.com';
+$user->save();
+
+
+DELETE
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+$user = User::find(1);
+$user->delete();
+User::destroy(1);
+
