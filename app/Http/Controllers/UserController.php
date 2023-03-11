@@ -17,7 +17,8 @@ class UserController extends Controller
     {
         // $user = Usrr::paginate(10); este es otro metodo 
         $users = User::all();
-        dd($users);
+        //dd($users);
+        return view('test')->with('users',$users);
         //Retornar vista inyectando todos los usuarios
 
     }
