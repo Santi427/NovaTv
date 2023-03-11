@@ -18,7 +18,7 @@ return new class extends Migration
             $table->String('fullname');
             $table->String('email')->unique();
             $table->String('phone')->nullable();
-            $table->String('photo')->default('img/users/no-photo.png');
+            $table->String('photo')->default('images/no-photo.png');
             $table->timestamp('email_verified_at')->nullable();
             $table->String('password');
 
