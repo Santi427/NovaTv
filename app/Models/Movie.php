@@ -21,13 +21,12 @@ class Movie extends Model
         'image',
         'release_year',
         'reproduction_number',
-        'languaje',
+        'language',
         'video_link',
         'download_link',
         'user_id',
         'category_id',
     ];
-
     public function getAllMovies(){
         return Movie::all();
     }
@@ -36,13 +35,12 @@ class Movie extends Model
         return Movie::find($id);
     }
 
-    public function user (){
+    // Relaciones
+    public function user(){
         return $this->belongsTo('App\User');
     }
 
-    public function category (){
+    public function category(){
         return $this->belongsTo('App\Category');
     }
-
-
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\User;
 use App\Models\Role;
 
@@ -15,11 +16,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        // $user = Usrr::paginate(10); este es otro metodo 
+        // $user = User::paginate(10);
         $users = User::all();
-        //dd($users);
-        return view('test')->with('users',$users);
-        //Retornar vista inyectando todos los usuarios
+        dd($users);
+        // Retornar vista inyectando todos los usuarios
 
     }
 
@@ -31,7 +31,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::all();
-        //Retornar la vista elements.users.create
+        // Retornar la vista elements.users.create
     }
 
     /**
@@ -48,9 +48,11 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->phone = $request->phone;
         if($request->hasFile('photo')){
-            $file = time().'.'.$request->iamge->extension();
-            $request->image->move(public_path('images/profiles',$file));
+            $file = time().'.'.$request->image->extension();
+            $request->image->move(public_path('images/profiles', $file));
+            $user->photo = 'images/profiles/'.$file;
         }
+        
         $user->password = bcrypt($request->password);
         $user->role_id = $request->role_id;
 
@@ -71,7 +73,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         dd($user);
-        //Retornar vista con la informacion del elemento 
+        // Retornar la vista
     }
 
     /**
@@ -83,7 +85,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        //Retorno la vista con el formulario de edicion del usuario
+        //Retorna la vista con el formulario de edición del usuario 
     }
 
     /**
@@ -101,9 +103,11 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->phone = $request->phone;
         if($request->hasFile('photo')){
-            $file = time().'.'.$request->iamge->extension();
-            $request->image->move(public_path('images/profiles',$file));
+            $file = time().'.'.$request->image->extension();
+            $request->image->move(public_path('images/profiles', $file));
+            $user->photo = 'images/profiles/'.$file;
         }
+        
         $user->password = bcrypt($request->password);
         $user->role_id = $request->role_id;
 
@@ -111,6 +115,7 @@ class UserController extends Controller
             dd($user);
             //Retornar la vista
         }
+
     }
 
     /**
@@ -122,9 +127,9 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
-
+        
         if($user->delete()){
-            //Retorne la vista index con el mensaje que pudo eliminar
+            // Retorne la vista index con el mensaje que pudo eliminar el elemento exitosamente
         }
     }
 }

@@ -9,9 +9,8 @@ class Role extends Model
 {
     use HasFactory;
 
-
     /**
-     * The attributes that should be hidden for serialization.
+     * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
@@ -21,15 +20,16 @@ class Role extends Model
     ];
 
     public function getAllRoles(){
-        return User::all();
+        return Role::all();
     }
 
     public function getRole($id){
-        return User::find($id);
+        return Role::find($id);
     }
 
-    public function users (){
-        return $this->hasMany('App\User');
+    // Relaciones
+    public function users(){
+        return $this->hasMany('App\Models\User');
     }
 
 }

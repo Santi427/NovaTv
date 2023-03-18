@@ -53,11 +53,12 @@ class User extends Authenticatable
         return User::find($id);
     }
 
+    // Relaciones
     public function movies(){
-        return $this->hasMany('App\Movie');
+        return $this->hasMany('App\Models\Movie');
     }
 
-    public function role (){
-        return $this->belongsTo('App\Roles');
+    public function role(){
+        return $this->belongsTo('App\Models\Role');
     }
 }
