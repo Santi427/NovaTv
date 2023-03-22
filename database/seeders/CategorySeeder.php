@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+
 use App\Models\Category;
 
 class CategorySeeder extends Seeder
@@ -16,13 +17,18 @@ class CategorySeeder extends Seeder
     public function run()
     {
         $category = new Category;
-        $category->name = 'Terror';
-        $category->description = 'El cine de terror es un género cinematográfico que se caracteriza por su voluntad de provocar en el espectador sensaciones de pavor, terror, miedo, disgusto, repugnancia, horror, incomodidad o preocupación';
+        $category->name = 'Aventura';
+        $category->description = 'Peliculas que narran historias';
         $category->save();
 
         $category = new Category;
-        $category->name = 'Romance';
-        $category->description = 'El cine romántico es un género cinematográfico que se caracteriza por retratar argumentos construidos de eventos y personajes relacionados con la expresión del amor y las relaciones románticas';
+        $category->name = 'Terror';
+        $category->description = 'Peliculas de miedo';
+        $category->save();
+
+        $category = new Category;
+        $category->name = 'Acción';
+        $category->description = 'Peliculas emocionantes';
         $category->save();
     }
 }
